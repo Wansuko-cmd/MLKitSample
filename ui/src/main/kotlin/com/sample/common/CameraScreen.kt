@@ -1,5 +1,6 @@
 package com.sample.common
 
+import android.Manifest
 import android.util.Size
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -14,7 +15,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
 import java.util.concurrent.Executors
+
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun CameraScreenWithPermission(
+    modifier: Modifier = Modifier,
+    analyze: (image: ImageProxy) -> Unit,
+) {
+    val cameraPermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA)
+    LaunchedEffect(Unit) {
+        cameraPermissionState.launchPermissionRequest()
+    }
+    if (cameraPermissionState.status.isGranted) {
+        CameraScreen(modifier, analyze)
+    }
+}
 
 @Composable
 fun CameraScreen(
