@@ -8,6 +8,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":data"))
+
     implementation(libs.bundles.androidx)
 
     testImplementation(libs.bundles.test)
