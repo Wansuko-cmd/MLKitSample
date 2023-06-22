@@ -28,6 +28,9 @@ androidx-compose-lifecycle = "2.6.1"
 androidx-compose-navigation = "2.6.0"
 androidx-compose-hilt-navigation = "1.0.0"
 
+# Accompanist
+accompanist-permissions = "0.30.1"
+
 # Hilt
 hilt = "2.46.1"
 
@@ -79,6 +82,9 @@ androidx-compose-hilt = { group = "androidx.hilt", name = "hilt-navigation-compo
 androidx-compose-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-test-uitooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+
+# Accompanist
+accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist-permissions" }
 
 # Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
