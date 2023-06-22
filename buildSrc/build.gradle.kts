@@ -27,9 +27,5 @@ gradlePlugin {
             id = "com.sample.dagger-hilt"
             implementationClass = "plugins.DaggerHiltPlugin"
         }
-        register("firebase") {
-            id = "com.sample.firebase"
-            implementationClass = "plugins.FirebasePlugin"
-        }
     }
 }

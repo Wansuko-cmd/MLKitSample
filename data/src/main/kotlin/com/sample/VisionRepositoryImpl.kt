@@ -1,16 +1,16 @@
 package com.sample
 
 import android.media.Image
-import com.google.firebase.ml.vision.common.FirebaseVisionImage
-import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata
-import com.google.firebase.ml.vision.document.FirebaseVisionDocumentTextRecognizer
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.text.TextRecognizer
 import javax.inject.Inject
 
 class VisionRepositoryImpl @Inject constructor(
-    private val documentTextRecognizer: FirebaseVisionDocumentTextRecognizer,
+    private val textRecognizer: TextRecognizer,
 ) : VisionRepository {
-    override fun detectText(mediaImage: Image) =
-        documentTextRecognizer
-            .processImage(FirebaseVisionImage.fromMediaImage(mediaImage, FirebaseVisionImageMetadata.ROTATION_0))
-            .result.text
+    override fun detectText(mediaImage: Image) {
+        textRecognizer
+            .process(InputImage.fromMediaImage(mediaImage, 0))
+            .addOnSuccessListener { println(it.text) }
+    }
 }

@@ -34,9 +34,8 @@ accompanist-permissions = "0.30.1"
 # Hilt
 hilt = "2.46.1"
 
-# Firebase
-firebase-bom = "32.1.1"
-firebase-ml-vision = "24.0.3"
+# MLKit
+mlkit-text-recognition-japanese = "16.0.0"
 
 # Gradle
 gradle-android = "8.0.2"
@@ -90,10 +89,8 @@ accompanist-permissions = { group = "com.google.accompanist", name = "accompanis
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 
-# Firebase
-firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
-firebase-analytics-ktx = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
-firebase-ml-vision = { group = "com.google.firebase", name = "firebase-ml-vision", version.ref = "firebase-ml-vision" }
+# MLKit
+mlkit-text-recognition-japanese = { group = "com.google.mlkit", name = "text-recognition-japanese", version.ref = "mlkit-text-recognition-japanese" }
 
 # Gradle
 gradle-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }

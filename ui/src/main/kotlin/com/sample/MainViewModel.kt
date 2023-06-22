@@ -11,6 +11,6 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
     @androidx.annotation.OptIn(androidx.camera.core.ExperimentalGetImage::class)
     fun detect(imageProxy: ImageProxy) {
-        imageProxy.image?.let { println(visionRepository.detectText(it)) } ?: println("Err")
+        imageProxy.image?.let { visionRepository.detectText(it) } ?: println("Err")
     }
 }

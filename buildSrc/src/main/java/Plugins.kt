@@ -3,5 +3,4 @@ object Plugins {
     const val androidLibrary = "com.sample.library"
     const val androidCompose = "com.sample.compose"
     const val daggerHilt = "com.sample.dagger-hilt"
-    const val firebase = "com.sample.firebase"
 }

@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.daggerHilt)
-    id(Plugins.firebase)
 }
 
 android {
@@ -12,6 +11,6 @@ dependencies {
     implementation(project(":utils"))
 
     implementation(libs.bundles.androidx)
-    implementation(libs.firebase.ml.vision)
+    implementation(libs.mlkit.text.recognition.japanese)
     testImplementation(libs.bundles.test)
 }
