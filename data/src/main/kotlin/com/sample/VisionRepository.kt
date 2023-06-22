@@ -1,7 +1,8 @@
 package com.sample
 
 import android.graphics.Bitmap
+import android.media.Image
 
 interface VisionRepository {
-    fun detectText(bitmap: Bitmap): String
+    fun detectText(mediaImage: Image): String
 }
