@@ -6,6 +6,7 @@ dependencies {
     implementation(libs.gradle.kotlin)
     implementation(libs.gradle.android)
     implementation(libs.gradle.hilt)
+    implementation("com.google.gms:google-services:4.3.15")
 }
 
 gradlePlugin {
@@ -25,6 +26,10 @@ gradlePlugin {
         register("daggerHilt") {
             id = "com.sample.dagger-hilt"
             implementationClass = "plugins.DaggerHiltPlugin"
+        }
+        register("firebase") {
+            id = "com.sample.firebase"
+            implementationClass = "plugins.FirebasePlugin"
         }
     }
 }
