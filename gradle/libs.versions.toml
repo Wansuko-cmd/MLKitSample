@@ -30,6 +30,7 @@ hilt = "2.46.1"
 
 # Firebase
 firebase-bom = "32.1.1"
+firebase-ml-vision = "24.0.3"
 
 # Gradle
 gradle-android = "8.0.2"
@@ -78,6 +79,7 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", v
 # Firebase
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 firebase-analytics-ktx = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+firebase-ml-vision = { group = "com.google.firebase", name = "firebase-ml-vision", version.ref = "firebase-ml-vision" }
 
 # Gradle
 gradle-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }

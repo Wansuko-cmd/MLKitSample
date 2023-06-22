@@ -11,5 +11,6 @@ dependencies {
     implementation(project(":utils"))
 
     implementation(libs.bundles.androidx)
+    implementation(libs.firebase.ml.vision)
     testImplementation(libs.bundles.test)
 }
