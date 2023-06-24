@@ -22,7 +22,7 @@ import java.util.concurrent.Executors
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun CameraScreenWithPermission(
+fun AnalyzeCameraWithPermissionScreen(
     modifier: Modifier = Modifier,
     analyze: (image: ImageProxy) -> Unit,
 ) {
@@ -31,12 +31,12 @@ fun CameraScreenWithPermission(
         cameraPermissionState.launchPermissionRequest()
     }
     if (cameraPermissionState.status.isGranted) {
-        CameraScreen(modifier, analyze)
+        AnalyzeCameraScreen(modifier, analyze)
     }
 }
 
 @Composable
-fun CameraScreen(
+private fun AnalyzeCameraScreen(
     modifier: Modifier = Modifier,
     analyze: (image: ImageProxy) -> Unit,
 ) {

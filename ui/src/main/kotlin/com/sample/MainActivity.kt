@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.sample.common.CameraScreenWithPermission
+import com.sample.common.AnalyzeCameraWithPermissionScreen
 import com.sample.theme.MLKitSampleTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MLKitSampleTheme {
                 val mainViewModel: MainViewModel = hiltViewModel()
-                CameraScreenWithPermission(
+                AnalyzeCameraWithPermissionScreen(
                     modifier = Modifier.fillMaxSize(),
                     analyze = {
                         mainViewModel.detect(it)
