@@ -3,5 +3,5 @@ package com.sample
 import android.media.Image
 
 interface VisionRepository {
-    fun detectText(mediaImage: Image)
+    suspend fun detectText(mediaImage: Image): String
 }

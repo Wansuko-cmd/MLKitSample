@@ -21,7 +21,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     analyze = {
                         mainViewModel.detect(it)
-                        it.close()
                     },
                 )
             }

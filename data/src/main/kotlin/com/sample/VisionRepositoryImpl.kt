@@ -3,14 +3,16 @@ package com.sample
 import android.media.Image
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognizer
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class VisionRepositoryImpl @Inject constructor(
     private val textRecognizer: TextRecognizer,
 ) : VisionRepository {
-    override fun detectText(mediaImage: Image) {
+    override suspend fun detectText(mediaImage: Image): String = withContext(Dispatchers.IO) {
         textRecognizer
-            .process(InputImage.fromMediaImage(mediaImage, 0))
-            .addOnSuccessListener { println(it.text) }
+            .processWith(InputImage.fromMediaImage(mediaImage, 0))
+            .text
     }
 }
