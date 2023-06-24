@@ -10,6 +10,6 @@ import dagger.hilt.components.SingletonComponent
 interface RepositoryBindModule {
     @Binds
     fun bindVisionRepository(
-        visionRepositoryImpl: VisionRepositoryImpl,
-    ): VisionRepository
+        visionRepositoryImpl: TextRecognizeRepositoryImpl,
+    ): TextRecognizeRepository
 }

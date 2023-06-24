@@ -9,12 +9,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val visionRepository: VisionRepository,
+    private val visionRepository: TextRecognizeRepository,
 ) : ViewModel() {
     @androidx.annotation.OptIn(androidx.camera.core.ExperimentalGetImage::class)
     fun detect(imageProxy: ImageProxy) {
         viewModelScope.launch {
-            imageProxy.image?.let { println(visionRepository.detectText(it)) } ?: println("Err")
+            imageProxy.image?.let { println(visionRepository.recognize(it)) } ?: println("Err")
             imageProxy.close()
         }
     }
