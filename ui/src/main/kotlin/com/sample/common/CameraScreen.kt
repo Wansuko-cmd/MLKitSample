@@ -1,11 +1,9 @@
 package com.sample.common
 
 import android.Manifest
-import android.util.Size
 import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
+import androidx.camera.core.UseCase
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.compose.runtime.Composable
@@ -18,27 +16,26 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
-import java.util.concurrent.Executors
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun CameraScreenWithPermission(
     modifier: Modifier = Modifier,
-    analyze: (image: ImageProxy) -> Unit,
+    useCases: List<UseCase>,
 ) {
     val cameraPermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA)
     LaunchedEffect(Unit) {
         cameraPermissionState.launchPermissionRequest()
     }
     if (cameraPermissionState.status.isGranted) {
-        CameraScreen(modifier, analyze)
+        CameraScreen(modifier, useCases)
     }
 }
 
 @Composable
 fun CameraScreen(
     modifier: Modifier = Modifier,
-    analyze: (image: ImageProxy) -> Unit,
+    useCases: List<UseCase>,
 ) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -47,19 +44,6 @@ fun CameraScreen(
     val preview = remember { Preview.Builder().build() }
     val cameraProvider: ProcessCameraProvider =
         remember { ProcessCameraProvider.getInstance(context).get() }
-    val imageAnalysis = remember {
-        ImageAnalysis.Builder()
-            .setTargetResolution(Size(224, 224))
-            .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-            .build()
-            .also {
-                it.setAnalyzer(
-                    Executors.newSingleThreadExecutor(),
-                ) { image ->
-                    analyze(image)
-                }
-            }
-    }
 
     val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     LaunchedEffect(previewView) {
@@ -68,7 +52,7 @@ fun CameraScreen(
             lifecycleOwner,
             cameraSelector,
             preview,
-            imageAnalysis,
+            *useCases.toTypedArray(),
         )
         preview.setSurfaceProvider(previewView.surfaceProvider)
     }
