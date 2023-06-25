@@ -21,5 +21,3 @@ include(":app")
 include(":ui")
 include(":utils")
 include(":data")
-
-include(":lib")

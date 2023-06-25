@@ -28,8 +28,8 @@ class MainViewModel @Inject constructor(
             viewModelScope.launch {
                 _dialogMessage.value =
                     image.image
-                        ?.let { State.Success(textRecognizeRepository.recognize(it)) }
-                        ?: State.Failure("Error")
+                        ?.let { State.Result(textRecognizeRepository.recognize(it)) }
+                        ?: State.Result("Error")
                 image.close()
             }
         }
@@ -51,8 +51,7 @@ class MainViewModel @Inject constructor(
 }
 
 sealed class State {
-    data class Success(val message: String) : State()
-    data class Failure(val message: String) : State()
+    data class Result(val message: String) : State()
     object Loading : State()
     object Waiting : State()
 }

@@ -3,6 +3,7 @@ package com.sample
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,11 +43,24 @@ class MainActivity : ComponentActivity() {
                         Text(text = "Take Picture")
                     }
                 }
-                if (dialogMessage is State.Success) {
+                if (dialogMessage is State.Result) {
                     Dialog(onDismissRequest = mainViewModel::onDismissDialog) {
                         Surface {
-                            Column(Modifier.verticalScroll(rememberScrollState())) {
-                                Text(text = (dialogMessage as? State.Success)?.message ?: "")
+                            Column(Modifier.fillMaxSize()) {
+                                Column(
+                                    Modifier
+                                        .verticalScroll(rememberScrollState())
+                                        .horizontalScroll(rememberScrollState())
+                                        .weight(1f),
+                                ) {
+                                    Text(text = (dialogMessage as? State.Result)?.message ?: "")
+                                }
+                                TextButton(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    onClick = mainViewModel::onDismissDialog,
+                                ) {
+                                    Text(text = "Close")
+                                }
                             }
                         }
                     }
