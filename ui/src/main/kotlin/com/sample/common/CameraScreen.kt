@@ -19,7 +19,7 @@ import com.google.accompanist.permissions.rememberPermissionState
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun CameraScreenWithPermission(
+fun CameraWithPermissionScreen(
     modifier: Modifier = Modifier,
     useCases: List<UseCase>,
 ) {
