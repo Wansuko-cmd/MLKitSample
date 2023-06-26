@@ -14,28 +14,22 @@ subprojects {
         }
     }
 
-    val outputDir = "${project.buildDir}/reports/ktlint/"
-    val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
-
     @Suppress("UNUSED_VARIABLE")
     val ktlintCheck by tasks.creating(JavaExec::class) {
-        inputs.files(inputFiles)
-        outputs.dir(outputDir)
-
+        group = "verification"
         description = "Check Kotlin code style."
         classpath = ktlint
         mainClass.set("com.pinterest.ktlint.Main")
-        args = listOf("src/**/*.kt")
+        args = listOf("src/**/*.kt", "**.kts", "!**/build/**")
     }
 
     @Suppress("UNUSED_VARIABLE")
     val ktlintFormat by tasks.creating(JavaExec::class) {
-        inputs.files(inputFiles)
-        outputs.dir(outputDir)
-
+        group = "formatting"
         description = "Fix Kotlin code style deviations."
         classpath = ktlint
         mainClass.set("com.pinterest.ktlint.Main")
-        args = listOf("-F", "src/**/*.kt")
+        jvmArgs = listOf("--add-opens=java.base/java.lang=ALL-UNNAMED")
+        args = listOf("-F", "src/**/*.kt", "**.kts", "!**/build/**")
     }
 }
